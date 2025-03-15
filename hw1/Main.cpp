@@ -54,12 +54,18 @@ Folder* find(Folder* root, string name,int offset) {
     return current;
 }
 
-void search(Folder* path,string type,string name) {
-    for(int i = 0; i < path->files.size(); i++) {
-        if(type=="f") {
+void search(Folder* path,string type,string name,string path_name) {    //f is file ,d is folder
+    if(type == "f"|type.empty()) {
+        for(int i = 0; i < path->files.size(); i++) {
 
         }
     }
+    if(type == "d"|type.empty()) {
+        for(int i = 0; i < path->sub_folder.size(); i++) {
+
+        }
+    }
+
 }
 
 int main() {
@@ -173,7 +179,8 @@ int main() {
                     path = parameters[j];
                 }
             }
-            search(root, type, name);
+            Folder* current = find(root, name,0);
+            search(current, type, name,path);
 
             if(parameters.size() == 1) {}
 
