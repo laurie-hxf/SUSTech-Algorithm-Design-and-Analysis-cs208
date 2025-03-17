@@ -21,6 +21,7 @@ struct Folder {
     map<string,File*> files;
     Folder(string x) : name(x), father(NULL) {}
 };
+void search(Folder* path,string type,string name,string path_name) ;
 
 vector<string> split(const string& str, char delimiter) {
     vector<string> tokens;
@@ -55,17 +56,24 @@ Folder* find(Folder* root, string name,int offset) {
 }
 
 void search(Folder* path,string type,string name,string path_name) {    //f is file ,d is folder
-    if(type == "f"|type.empty()) {
-        for(int i = 0; i < path->files.size(); i++) {
-
+    for (pair<string,Folder*> p : path->sub_folder) {
+        if(type == "d") {
+            if(p.first == name) {
+                cout << path_name+"/"+p.first<< endl;
+            }
         }
-    }
-    if(type == "d"|type.empty()) {
-        for(int i = 0; i < path->sub_folder.size(); i++) {
-
+        else if(type == "f") {
+            for (pair<string,File*> file : path->files) {
+                if(file.first == name) {
+                    cout << path_name+"/"+p.first+"/"+file.first << endl;
+                }
+            }
         }
+        else {
+            cout << path_name << endl;
+        }
+        search(p.second,type,p.first,path_name+"/"+p.first);
     }
-
 }
 
 int main() {
@@ -139,7 +147,21 @@ int main() {
         }
 
         else if(command == "mv") {
-
+            string src_path_to_file, dst_path_to_file;
+            cin >> src_path_to_file;
+            cin >> dst_path_to_file;
+            vector<string> path_1 = split(src_path_to_file, '/');
+            vector<string> path_2 = split(dst_path_to_file, '/');
+            string file_name = path_1.back();
+            Folder* src = find(root, src_path_to_file,-1);
+            Folder* dest = find(root, dst_path_to_file,0);
+            if(src->files.find(file_name) != src->files.end()) {
+                src->files[file_name]->father = dest;
+                src->files.erase(file_name);
+            }else if(src->sub_folder.find(file_name) != src->sub_folder.end()) {
+                src->sub_folder[file_name]->father = dest;
+                src->sub_folder.erase(file_name);
+            }
         }
     }
 
@@ -179,10 +201,14 @@ int main() {
                     path = parameters[j];
                 }
             }
-            Folder* current = find(root, name,0);
-            search(current, type, name,path);
 
-            if(parameters.size() == 1) {}
+            if(parameters.size() == 1) {
+                search(root, type, name,".");
+            }
+            else {
+                Folder* current = find(root, path,0);
+                search(current, type, name,path);
+            }
 
         }
     }
