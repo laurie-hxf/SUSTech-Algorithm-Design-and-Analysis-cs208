@@ -1,0 +1,3 @@
+/Users/laurie/Documents/Algorithm Design /SE2/paractise2/paractise2_b/cmake-build-debug/CMakeFiles/paractise2_b.dir
+/Users/laurie/Documents/Algorithm Design /SE2/paractise2/paractise2_b/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/laurie/Documents/Algorithm Design /SE2/paractise2/paractise2_b/cmake-build-debug/CMakeFiles/rebuild_cache.dir
