@@ -27,7 +27,7 @@ int main() {
     int i=0,j=0;
 
 
-        while(i<N&&j<M) {
+        while(i<M&&j<N) {
             if(bunnies[j]-nest[i]<-T) {
                 j++;
             }

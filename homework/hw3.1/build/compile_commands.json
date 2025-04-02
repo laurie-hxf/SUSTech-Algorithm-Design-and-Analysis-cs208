@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/laurie/Documents/Algorithm Design /SE2/homework/hw3.1/build",
+  "command": "/opt/homebrew/bin/aarch64-apple-darwin24-g++-14   -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -o CMakeFiles/hw3_1.dir/Main.cpp.o -c \"/Users/laurie/Documents/Algorithm Design /SE2/homework/hw3.1/Main.cpp\"",
+  "file": "/Users/laurie/Documents/Algorithm Design /SE2/homework/hw3.1/Main.cpp",
+  "output": "CMakeFiles/hw3_1.dir/Main.cpp.o"
+}
+]
