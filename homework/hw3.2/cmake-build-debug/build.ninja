@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_hw3_2: phony || .
 
 build CMakeFiles/hw3_2.dir/Main.cpp.o: CXX_COMPILER__hw3_2_unscanned_Debug /Users/laurie/Documents/Algorithm$ Design$ /SE2/homework/hw3.2/Main.cpp || cmake_object_order_depends_target_hw3_2
   DEP_FILE = CMakeFiles/hw3_2.dir/Main.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/hw3_2.dir
   OBJECT_FILE_DIR = CMakeFiles/hw3_2.dir
   TARGET_COMPILE_PDB = CMakeFiles/hw3_2.dir/
@@ -66,7 +66,7 @@ build CMakeFiles/hw3_2.dir/Main.cpp.o: CXX_COMPILER__hw3_2_unscanned_Debug /User
 # Link the executable hw3_2
 
 build hw3_2: CXX_EXECUTABLE_LINKER__hw3_2_Debug CMakeFiles/hw3_2.dir/Main.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk
   OBJECT_DIR = CMakeFiles/hw3_2.dir
   POST_BUILD = :
   PRE_LINK = :
