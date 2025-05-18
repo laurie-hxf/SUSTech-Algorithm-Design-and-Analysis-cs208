@@ -1,0 +1,3 @@
+/Users/laurie/Documents/Algorithm Design /SE2/homework/hw6.2/cmake-build-debug/CMakeFiles/hw6_2.dir
+/Users/laurie/Documents/Algorithm Design /SE2/homework/hw6.2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/laurie/Documents/Algorithm Design /SE2/homework/hw6.2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

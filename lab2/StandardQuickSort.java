@@ -1,87 +1,75 @@
-import java.io.*;
-import java.util.*;
-import java.util.Scanner;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-public class StandardQuickSort {
+import java.util.PriorityQueue;
+
+public class Main {
+
     public static void main(String[] args) {
         QReader in = new QReader();
         QWriter out = new QWriter();
         int n = in.nextInt();
-        String[] a = new String[n+1];
-        String[] b = new String[n+1];
-        int[][] ranka=new int[n+1][n+1];
-        int[][] rankb=new int[n+1][n+1];
-        int[] matcha=new int[n+1];
-        int[] matchb=new int[n+1];
-        String t;
-        Map<String, Integer> hasha = new HashMap<>();
-        for (int i = 1; i <= n; i++) {
-            a[i] = in.next();
-            hasha.put(a[i], i);
-        }
-        Map<String, Integer> hashb = new HashMap<>();
-        for (int i = 1; i <= n; i++) {
-            b[i] = in.next();
-            hashb.put(b[i], i);
-        }
-        int value=0;
-        String st;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                st=in.next();
-                value=hashb.get(st);
-                ranka[i][j]=value;
-            }
-        }
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                st=in.next();
-                value=hasha.get(st);
-                rankb[i][value]=j;
-            }
-        }
-        int count=1;
-        int now=1,tran;
+        int m = in.nextInt();
+        node[] t = new node[n + 1];
+
         int i;
-        while (count<=n)
-        {
-            if(matcha[now]==0)
-            {
-                i=1;
-                while(i<=n) {
-                    if (matchb[ranka[now][i]] == 0) {
-                        matcha[now] = ranka[now][i];
-                        matchb[ranka[now][i]] = now;
-                        count++;
-                        now=count;
-                        break;
-                    } else {
-                        if (rankb[ranka[now][i]][now] < rankb[ranka[now][i]][matchb[ranka[now][i]]])
-                        {
-                            matcha[now] = ranka[now][i];
-                            matcha[matchb[ranka[now][i]]] = 0;//todo将matchb[ranka[now][i]]对应的旧man设回无匹配
-                            tran=matchb[ranka[now][i]];
-                            matchb[ranka[now][i]] = now;
-                            now=tran;
-                            break;
-                        }else
-                        {
-                            i++;
-                        }
+        for(i = 0; i <= n; t[i].sign = i++) {
+            t[i] = new node();
+        }
+
+        int i;
+        for(i = 1; i <= m; ++i) {
+            int u = in.nextInt();
+            i = in.nextInt();
+            int w = in.nextInt();
+            t[u].way.add(new edge(u, i, w));
+            t[i].way1.add(new edge(i, u, w));
+        }
+
+        PriorityQueue<node> numbers = new PriorityQueue(100001, new CustomComparator());
+        t[1].value = 0;
+        numbers.offer(t[1]);
+
+        while(!numbers.isEmpty()) {
+            node now = (node)numbers.poll();
+            now.vis = true;
+
+            for(i = 0; i < now.way.size(); ++i) {
+                if (!t[((edge)now.way.get(i)).v].vis) {
+                    if (!t[((edge)now.way.get(i)).v].en) {
+                        t[((edge)now.way.get(i)).v].value = now.value + ((edge)now.way.get(i)).num;
+                        numbers.offer(t[((edge)now.way.get(i)).v]);
+                        t[((edge)now.way.get(i)).v].en = true;
+                    } else if (now.value + ((edge)now.way.get(i)).num < t[((edge)now.way.get(i)).v].value) {
+                        numbers.remove(t[((edge)now.way.get(i)).v]);
+                        t[((edge)now.way.get(i)).v].value = now.value + ((edge)now.way.get(i)).num;
+                        numbers.offer(t[((edge)now.way.get(i)).v]);
                     }
                 }
-                if(i>n) break;
             }
         }
-        for(int j=1;j<=n;j++)
-        {
-            out.print(a[j]);
-            out.print(" ");
-            out.println(b[matcha[j]]);
+
+        long sum = 0L;
+
+        for(int i = 2; i <= n; ++i) {
+            long small = 2147483647L;
+
+            for(int j = 0; j < t[i].way1.size(); ++j) {
+                if (t[i].value == t[((edge)t[i].way1.get(j)).v].value + ((edge)t[i].way1.get(j)).num) {
+                    small = Math.min(small, (long)((edge)t[i].way1.get(j)).num);
+                }
+            }
+
+            sum += small;
         }
+
+        out.println(sum);
         out.close();
     }
 }
+
 
 
 class QReader {
