@@ -3,10 +3,10 @@
 # 编译 C++ 程序
 
 #javac GenerateTestData.java
-g++ -o me ../hw8.2/Main.cpp
-g++ -o Force Force.cpp
+g++ -o me Main.cpp
+# g++ -o Force Force.cpp
 #g++ -o your_sort Main.cpp
-# javac Main3.java
+javac Main.java
 #g++ -o your_sort ../hw4.2/Main.cpp
 
 
@@ -29,9 +29,9 @@ while true; do
 
         # 运行你的排序程序和标准排序程序
         ./me < data_$i.in > output_custom_$i.out
-        ./Force < data_$i.in > output_standard_$i.out
+        # ./Force < data_$i.in > output_standard_$i.out
 #        ./standard < data.in_$i > output_standard_$i.out
-        # java Main3.java < data_$i.in > output_standard_$i.out
+        java Main.java < data_$i.in > output_standard_$i.out
 
         # 对比结果
         if diff -q "output_custom_$i.out" "output_standard_$i.out" > /dev/null; then

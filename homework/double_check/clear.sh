@@ -1,3 +1,3 @@
 #!/bin/bash
-rm *in*
+rm *in
 rm *out
